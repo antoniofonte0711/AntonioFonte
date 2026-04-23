@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Antonio Fonte — Web Designer, nuotatore agonista, studente di informatica a Milano. Portfolio scolastico 2026.">
+  <meta property="og:title" content="Antonio Fonte — Portfolio">
+  <meta property="og:description" content="Scrivo codice di giorno, nuoto di notte, e ogni tanto recito davanti a gente che non se lo aspetta.">
+  <meta property="og:type" content="website">
+  <title>Antonio Fonte</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cur" id="cur" aria-hidden="true"></div>
+  <div class="cur-ring" id="curRing" aria-hidden="true"></div>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader" role="status" aria-label="Caricamento in corso">
+    <div class="loader-name">Antonio Fonte</div>
+    <div class="loader-line"></div>
+  </div>
+
+  <!-- EASTER EGG -->
+  <!-- FIX: aria-modal e role dialog per accessibilità corretta -->
+  <div class="egg" id="egg" role="dialog" aria-modal="true" aria-labelledby="eggTitle" aria-hidden="true">
+    <div class="egg-box">
+      <p class="egg-label">// segreto sbloccato</p>
+      <h2 id="eggTitle">Hai trovato il codice.</h2>
+      <p>Non so cosa ti aspettavi, ma ora sai che leggo ogni cosa che scrivi sul mio sito.<br>Benvenuto nel club dei curiosi.</p>
+      <!-- FIX: <span> → <button> per raggiungibilità da tastiera -->
+      <button class="egg-close" id="eggClose" type="button">× chiudi</button>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav aria-label="Navigazione principale">
+    <div class="nav-inner">
+      <span class="nav-logo">Antonio Fonte</span>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#chi-sono">Chi sono</a></li>
+        <li><a href="#numeri">Numeri</a></li>
+        <li><a href="#competenze">Competenze</a></li>
+        <li><a href="#progetti">Progetti</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contatti">Contatti</a></li>
+        <li><a href="./stage.html">Stage</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero" class="vis" style="opacity:1;transform:none;">
+      <div class="hero-body">
+        <div class="hero-left">
+          <p class="hero-issue">Portfolio — Anno Scolastico 2025/2026</p>
+          <h1><span class="hl">Antonio</span><br>Fonte</h1>
+          <p class="hero-desc">
+            Scrivo codice di giorno, nuoto di notte,<br>
+            e ogni tanto recito davanti a gente<br>che non se lo aspetta.
+          </p>
+          <!-- FIX: CTA chiare per guidare l'utente (recruiter e visitatori) -->
+          <div class="hero-cta">
+            <a href="#progetti" class="btn-primary">Guarda i progetti →</a>
+            <a href="./ANTONIO_FONTE_curriculum.pdf" download class="btn-secondary">↓ Scarica CV</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-stat">
+            <span class="hero-stat-n">6</span>
+            <span class="hero-stat-l">anni in piscina</span>
+          </div>
+          <div class="rule" style="height:1px;"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-n">2</span>
+            <span class="hero-stat-l">stage completati</span>
+          </div>
+          <div class="rule" style="height:1px;"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-n">3</span>
+            <span class="hero-stat-l">progetti consegnati</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-tags">
+        <span class="tag">Creatore</span>
+        <span class="tag">Web Design</span>
+        <span class="tag">Nuoto</span>
+        <span class="tag">Aviazione</span>
+        <span class="tag">Teatro</span>
+        <span class="tag">Milano</span>
+      </div>
+    </section>
+
+    <!-- CHI SONO -->
+    <section id="chi-sono">
+      <div class="section-aside">
+        <span class="section-number">01</span>
+        <span class="lbl">Chi sono</span>
+      </div>
+      <div>
+        <h2>Informazioni<br><span class="hl">personali</span></h2>
+        <p class="bio" style="margin-top:32px;">
+          Ho 19 anni e passo più tempo in acqua che all'asciutto. Nuotatore agonista,
+          la corsia è il posto dove la testa si svuota e il corpo fa tutto il lavoro.
+          Fuori dalla piscina, studio informatica e mi piace smontare i problemi pezzo per pezzo
+          finché non tornano. Frequento anche un'accademia teatrale — perché stare sotto pressione
+          davanti a una platea non è poi così diverso da una gara. E poi c'è l'aviazione:
+          motori, rotte, fisica del volo — una passione silenziosa che non si spiega, si ha.
+        </p>
+        <dl class="info-grid">
+          <div class="info-row"><dt>Nome</dt><dd>Antonio Fonte</dd></div>
+          <div class="info-row"><dt>Età</dt><dd>19 anni</dd></div>
+          <div class="info-row"><dt>Città</dt><dd>Corsico, Milano</dd></div>
+          <div class="info-row"><dt>Lingue</dt><dd>Italiano, Inglese</dd></div>
+          <div class="info-row"><dt>Scuola</dt><dd>Immaginazione e Lavoro</dd></div>
+          <div class="info-row"><dt>Indirizzo</dt><dd>Operatore Informatico</dd></div>
+          <div class="info-row"><dt>Anno</dt><dd>Terzo anno</dd></div>
+          <div class="info-row"><dt>Anno scolastico</dt><dd>2025 / 2026</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- NUMERI -->
+    <section id="numeri">
+      <div class="numeri-head">
+        <div>
+          <span class="section-number">02</span>
+          <span class="lbl">In cifre</span>
+        </div>
+        <div>
+          <h2>Quello che i numeri<br><span class="hl">non riescono a spiegare</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Ma ci provano comunque.</p>
+        </div>
+      </div>
+      <div class="numeri-grid">
+        <div class="num-card">
+          <span class="num-n" data-target="6">0</span>
+          <span class="num-unit">anni</span>
+          <p class="num-desc">in piscina ad allenarmi prima che il resto del mondo si svegli</p>
+        </div>
+        <div class="num-card">
+          <span class="num-n" data-target="2">0</span>
+          <span class="num-unit">stage</span>
+          <p class="num-desc">completati in aziende reali, con clienti reali e scadenze reali</p>
+        </div>
+        <div class="num-card">
+          <span class="num-n" data-target="3">0</span>
+          <span class="num-unit">progetti</span>
+          <p class="num-desc">consegnati quest'anno scolastico che mi hanno fatto perdere il sonno</p>
+        </div>
+        <div class="num-card">
+          <span class="num-n" data-target="4">0</span>
+          <span class="num-unit">Spettacoli</span>
+          <p class="num-desc">in 4 anni di puro divertimento sopra un palco, davanti ad una platea</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPETENZE -->
+    <section id="competenze">
+      <div class="section-aside">
+        <span class="section-number">03</span>
+        <span class="lbl">Competenze</span>
+      </div>
+      <div>
+        <h2>Quello che so fare —<br><span class="hl">e quanto ci metto</span></h2>
+        <p style="margin-top:16px;font-size:15px;">Dalla progettazione web alla programmazione hardware.</p>
+        <div class="comp-list">
+          <div class="comp-item">
+            <span class="comp-name">HTML / CSS</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Alto</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="85"></div></div>
+              <span class="comp-pct">85%</span>
+            </div>
+          </div>
+          <div class="comp-item">
+            <span class="comp-name">Web Design</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Avanzato</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="95"></div></div>
+              <span class="comp-pct">95%</span>
+            </div>
+          </div>
+          <div class="comp-item">
+            <span class="comp-name">WordPress</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Alto</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="75"></div></div>
+              <span class="comp-pct">75%</span>
+            </div>
+          </div>
+          <div class="comp-item">
+            <span class="comp-name">Reti</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Base</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="60"></div></div>
+              <span class="comp-pct">60%</span>
+            </div>
+          </div>
+          <div class="comp-item">
+            <span class="comp-name">Sistemi Operativi</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Base</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="65"></div></div>
+              <span class="comp-pct">65%</span>
+            </div>
+          </div>
+          <div class="comp-item">
+            <span class="comp-name">Arduino (C++)</span>
+            <div class="comp-right">
+              <span class="comp-lvl">Base</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="55"></div></div>
+              <span class="comp-pct">55%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGETTI -->
+    <section id="progetti">
+      <div class="progetti-head">
+        <div>
+          <span class="section-number">04</span>
+          <span class="lbl">Progetti</span>
+        </div>
+        <div>
+          <h2>Cosa ho<br><span class="hl">realizzato</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Ho più progetti nel pc che cose personali — ecco i migliori.</p>
+        </div>
+      </div>
+      <div class="proj-list">
+        <div class="proj-item">
+          <span class="proj-num">01</span>
+          <div class="proj-body">
+            <div>
+              <p class="proj-title">Sito Web Portfolio</p>
+              <p class="proj-desc">Questo portfolio personale, realizzato interamente in HTML e CSS. Il sito raccoglie le mie competenze, i progetti svolti durante l'anno scolastico e il percorso formativo.</p>
+            </div>
+            <div class="proj-tags">
+              <span class="ptag">HTML</span>
+              <span class="ptag">CSS</span>
+              <span class="ptag">Progetto</span>
+            </div>
+          </div>
+          <div class="proj-img-wrap">
+            <!-- FIX: width e height aggiunti per prevenire layout shift -->
+            <img src="./Screenshot 2026-04-14 102501.png" alt="Portfolio personale di Antonio Fonte" width="320" height="240" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-item">
+          <span class="proj-num">02</span>
+          <div class="proj-body">
+            <div>
+              <p class="proj-title">Sito WordPress — FalangoneGroup</p>
+              <p class="proj-desc">Durante lo stage ho lavorato come Web Developer contribuendo alla creazione e gestione del sito WordPress. Ho curato struttura, contenuti e layout grafico.</p>
+            </div>
+            <div class="proj-tags">
+              <span class="ptag">WordPress</span>
+              <span class="ptag">Web Design</span>
+              <span class="ptag">Stage</span>
+            </div>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="./Screenshot 2026-04-14 100559.png" alt="Sito FalangoneGroup" width="320" height="240" loading="lazy">
+          </div>
+        </div>
+        <div class="proj-item">
+          <span class="proj-num">03</span>
+          <div class="proj-body">
+            <div>
+              <p class="proj-title">Progetto Arduino</p>
+              <p class="proj-desc">Realizzazione di un circuito con Arduino nell'ambito delle attività scolastiche. Il progetto ha permesso di applicare concetti di elettronica di base e programmazione in C++.</p>
+            </div>
+            <div class="proj-tags">
+              <span class="ptag">Arduino</span>
+              <span class="ptag">C++</span>
+              <span class="ptag">Laboratorio</span>
+            </div>
+          </div>
+          <div class="proj-img-wrap">
+            <img src="./Screenshot 2026-02-27 111759.png" alt="Progetto Arduino" width="320" height="240" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section id="now">
+      <div class="now-head">
+        <div>
+          <span class="section-number">05</span>
+          <span class="lbl">Ora</span>
+        </div>
+        <div>
+          <h2>Cosa sto facendo<br><span class="hl">in questo momento</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Aggiornato ad Aprile 2026 — un instant snapshot della mia vita.</p>
+        </div>
+      </div>
+      <div class="now-grid">
+        <div class="now-card">
+          <span class="now-icon">🏊</span>
+          <span class="now-t">In piscina</span>
+          <p>Mi alleno 6 volte a settimana. Preparo le mie gare per farle durare un battito di ciglio — l'obiettivo è tuffarsi e toccare l'arrivo in meno del campione del mondo.</p>
+        </div>
+        <div class="now-card">
+          <span class="now-icon">💻</span>
+          <span class="now-t">A scuola</span>
+          <p>Terzo anno e ancora ne manca — ho più ansia per una verifica di hardware che per una gara di nuoto.</p>
+        </div>
+        <div class="now-card">
+          <span class="now-icon">🎭</span>
+          <span class="now-t">In scena</span>
+          <p>Accademia teatrale attiva. Stare davanti a una platea non è poi così diverso da una gara — ti abitui.</p>
+        </div>
+        <div class="now-card">
+          <span class="now-icon">✈️</span>
+          <span class="now-t">In volo (con la testa)</span>
+          <p>Continuo a studiare aviazione per pura passione. Motori, rotte, fisica del volo — non si spiega, si ha.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <div class="cv-head">
+        <div>
+          <span class="section-number">06</span>
+          <span class="lbl">Curriculum</span>
+        </div>
+        <div>
+          <h2>Il mio<br><span class="hl">CV</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Formazione, esperienze e competenze in formato sintetico.</p>
+        </div>
+      </div>
+      <div class="cv-dl-bar">
+        <p>Scarica la versione completa in PDF.</p>
+        <a href="./antonio-fonte-cv.pdf" download class="btn-dl">↓ &nbsp;Scarica CV</a>
+      </div>
+
+      <div class="cv-block">
+        <p class="cv-block-title">Formazione</p>
+        <div class="cv-row">
+          <span class="cv-period">2023 – oggi</span>
+          <div class="cv-content">
+            <h3>Operatore Informatico</h3>
+            <span class="cv-where">Immaginazione e Lavoro — Milano</span>
+            <p>Corso quadriennale ad indirizzo Informatica. Programmazione, web design, WordPress, Arduino, reti e sistemi operativi.</p>
+          </div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">2020 – 2024</span>
+          <div class="cv-content">
+            <h3>Trasporti e Logistica</h3>
+            <span class="cv-where">ITIS Feltrinelli — Milano</span>
+            <p>Indirizzo tecnico con focus su logistica e trasporti, informatica e scienze applicate.</p>
+          </div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">2017 – 2020</span>
+          <div class="cv-content">
+            <h3>Licenza Media</h3>
+            <span class="cv-where">Educandato Statale Emanuele Setticarraro — Milano</span>
+            <p>Diploma di scuola secondaria di primo grado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block">
+        <p class="cv-block-title">Esperienze</p>
+        <div class="cv-row">
+          <span class="cv-period">2026</span>
+          <div class="cv-content">
+            <h3>Stage — Web Developer</h3>
+            <span class="cv-where">FalangoneGroup — Milano</span>
+            <p>Sviluppo e gestione del sito web aziendale tramite WordPress. Progettazione struttura, creazione pagine, contenuti e ottimizzazione grafica. Dicembre 2025 – Marzo 2026.</p>
+          </div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">2025</span>
+          <div class="cv-content">
+            <h3>Stage — Help Desk &amp; Supporto IT</h3>
+            <span class="cv-where">ScaiTecno — Milano</span>
+            <p>Supporto tecnico informatico, help desk, gestione e creazione di sistemi di comunicazione software. Marzo – Giugno 2025.</p>
+          </div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">2025</span>
+          <div class="cv-content">
+            <h3>Cameriere</h3>
+            <span class="cv-where">Gelateria Desideria — Milano</span>
+            <p>Servizio al cliente, gestione ordini e supporto operativo. Luglio – Agosto 2025.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-block">
+        <p class="cv-block-title">Competenze tecniche</p>
+        <div class="cv-skills">
+          <span class="cv-skill">HTML / CSS</span>
+          <span class="cv-skill">JavaScript</span>
+          <span class="cv-skill">Web Design</span>
+          <span class="cv-skill">WordPress</span>
+          <span class="cv-skill">Figma</span>
+          <span class="cv-skill">Photoshop</span>
+          <span class="cv-skill">Arduino (C++)</span>
+          <span class="cv-skill">Reti TCP/IP</span>
+          <span class="cv-skill">Windows</span>
+          <span class="cv-skill">Help Desk</span>
+          <span class="cv-skill">Pacchetto Office</span>
+        </div>
+      </div>
+
+      <div class="cv-block">
+        <p class="cv-block-title">Lingue</p>
+        <div class="cv-row">
+          <span class="cv-period">Italiano</span>
+          <div class="cv-content"><h3>Madrelingua</h3></div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">Inglese</span>
+          <div class="cv-content"><h3>Livello A2 — scolastico</h3></div>
+        </div>
+        <div class="cv-row">
+          <span class="cv-period">Francese</span>
+          <div class="cv-content"><h3>Livello A1</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section id="contatti">
+      <div class="contatti-head">
+        <div>
+          <span class="section-number">07</span>
+          <span class="lbl">Contatti</span>
+        </div>
+        <div>
+          <h2>Non mordo.<br><span class="hl">Scrivi.</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Puoi contattarmi tramite email. Rispondo — promesso.</p>
+        </div>
+      </div>
+      <div class="contact-list">
+        <a href="mailto:antonio.fonte@edu.immaginazioneelavoro.it" class="contact-row">
+          <span class="contact-type">Email</span>
+          <span>antonio.fonte@edu.immaginazioneelavoro.it</span>
+        </a>
+      </div>
+      <p class="konami-hint">// c'è qualcosa di nascosto qui. prova a digitare qualcosa.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span class="footer-logo">Antonio Fonte</span>
+    <span class="footer-copy">© 2026 — fatto con HTML, CSS e troppo caffè</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    /* ═══════════════════════════════════════════════════
+       1. LOADER SMART
+       Si chiude al window.load reale, non a tempo fisso.
+       Su connessioni veloci è immediato; su lente il fallback
+       (1.5 s) impedisce che la pagina resti bloccata.
+    ═══════════════════════════════════════════════════ */
+    (function initLoader() {
+      const loader = document.getElementById('loader');
+      let dismissed = false;
+
+      function dismiss() {
+        if (dismissed) return;
+        dismissed = true;
+        loader.classList.add('done');
+      }
+
+      // Minimo visuale: aspetta sempre che l'animazione della linea finisca
+      const MIN_MS = 500;
+      const start  = performance.now();
+
+      function dismissAfterMin() {
+        const elapsed = performance.now() - start;
+        const delay   = Math.max(0, MIN_MS - elapsed);
+        setTimeout(dismiss, delay);
+      }
+
+      if (document.readyState === 'complete') {
+        dismissAfterMin();
+      } else {
+        window.addEventListener('load', dismissAfterMin, { once: true });
+      }
+
+      // Fallback di sicurezza su connessioni lente
+      setTimeout(dismiss, 1600);
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       2. PAGE FADE — transizione in uscita verso altre pagine
+    ═══════════════════════════════════════════════════ */
+    (function initPageFade() {
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          document.body.classList.add('page-out');
+          setTimeout(() => { window.location.href = href; }, 380);
+        });
+      });
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       3. CURSOR MAGNETICO
+       – Dot: segue il mouse 1:1 (nessun ritardo percettivo)
+       – Ring: lerp con inerzia differenziata per X e Y
+       – magnetismo: su elementi interattivi il ring si
+         "aggancia" al centro dell'elemento invece di
+         seguire il mouse pixel per pixel
+       – pausa RAF quando la tab è nascosta (performance)
+    ═══════════════════════════════════════════════════ */
+    (function initCursor() {
+      // Niente cursor custom su touch o reduced-motion
+      const noPointer = window.matchMedia('(hover: none)').matches;
+      const noMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (noPointer || noMotion) return;
+
+      const dot  = document.getElementById('cur');
+      const ring = document.getElementById('curRing');
+
+      let mx = window.innerWidth / 2,  my = window.innerHeight / 2;  // posizione mouse
+      let rx = mx, ry = my;                                            // posizione ring
+      let magnetX = null, magnetY = null;                              // target magnetico
+      let rafId   = null;
+      let paused  = false;
+
+      // Lerp: frizione normale vs frizione ridotta in hover
+      const LERP_NORMAL = 0.12;
+      const LERP_HOVER  = 0.18;
+
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        // Sposta il dot immediatamente (zero lag visivo)
+        dot.style.transform = `translate(calc(-50% + ${mx}px), calc(-50% + ${my}px))`;
+      });
+
+      function loop() {
+        if (!paused) {
+          const tx    = magnetX !== null ? magnetX : mx;
+          const ty    = magnetY !== null ? magnetY : my;
+          const lerp  = magnetX !== null ? LERP_HOVER : LERP_NORMAL;
+
+          rx += (tx - rx) * lerp;
+          ry += (ty - ry) * lerp;
+
+          ring.style.transform = `translate(calc(-50% + ${rx}px), calc(-50% + ${ry}px))`;
+        }
+        rafId = requestAnimationFrame(loop);
+      }
+      loop();
+
+      // Pausa RAF quando la tab è in background
+      document.addEventListener('visibilitychange', () => {
+        paused = document.hidden;
+      });
+
+      // Rimuove left/top ereditati dal vecchio codice (usiamo transform)
+      dot.style.left  = '0';
+      dot.style.top   = '0';
+      ring.style.left = '0';
+      ring.style.top  = '0';
+
+      // Magnetismo sugli elementi interattivi
+      const INTERACTIVE = 'a, button, .tag, .cv-skill, .comp-item, .proj-item, .now-card, .num-card';
+
+      function onEnter(e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        magnetX = rect.left + rect.width  / 2;
+        magnetY = rect.top  + rect.height / 2;
+        dot.classList.add('hover');
+        ring.classList.add('hover');
+      }
+
+      function onMove(e) {
+        // Aggiorna il centro magnetico se l'elemento cambia posizione (scroll)
+        const rect = e.currentTarget.getBoundingClientRect();
+        magnetX = rect.left + rect.width  / 2;
+        magnetY = rect.top  + rect.height / 2;
+      }
+
+      function onLeave() {
+        magnetX = null;
+        magnetY = null;
+        dot.classList.remove('hover');
+        ring.classList.remove('hover');
+      }
+
+      function attachCursorListeners() {
+        document.querySelectorAll(INTERACTIVE).forEach(el => {
+          el.addEventListener('mouseenter', onEnter);
+          el.addEventListener('mousemove',  onMove);
+          el.addEventListener('mouseleave', onLeave);
+        });
+      }
+      attachCursorListeners();
+
+      // Re-attach se vengono aggiunti nuovi elementi (future-proof)
+      window._reattachCursor = attachCursorListeners;
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       4. SCROLL ANIMATIONS — IntersectionObserver
+       Gestisce: reveal sezioni, animazione barre competenze,
+       contatori numerici con easing cubico (non lineare).
+    ═══════════════════════════════════════════════════ */
+    (function initScrollAnimations() {
+      // Easing cubico in uscita per i contatori — più naturale del lineare
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+      function animateCounter(el) {
+        const target   = parseInt(el.dataset.target, 10);
+        if (isNaN(target) || target === 0) return;
+
+        const DURATION = 900; // ms
+        const startTime = performance.now();
+
+        function tick(now) {
+          const elapsed  = now - startTime;
+          const progress = Math.min(elapsed / DURATION, 1);
+          el.textContent = Math.round(easeOutCubic(progress) * target);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          const section = entry.target;
+          section.classList.add('vis');
+
+          // Barre competenze con stagger per effetto cascata
+          section.querySelectorAll('.comp-bar[data-w]').forEach((bar, i) => {
+            setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 80 + i * 60);
+          });
+
+          // Contatori con easing
+          section.querySelectorAll('.num-n[data-target]').forEach(animateCounter);
+
+          observer.unobserve(section);
+        });
+      }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('section').forEach(s => {
+        if (!s.classList.contains('vis')) observer.observe(s);
+      });
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       5. NAV ACTIVE — stato preciso con scroll spy
+       Usa rootMargin per marcare la sezione "attiva" non
+       appena entra nella fascia superiore della viewport,
+       non quando occupa il 40% della schermata.
+       Tiene traccia dell'ultima sezione visibile per non
+       resettare lo stato quando si scorre tra sezioni.
+    ═══════════════════════════════════════════════════ */
+    (function initNavSpy() {
+      const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+      if (!navLinks.length) return;
+
+      // Map section id → nav link per lookup O(1)
+      const linkMap = new Map(
+        navLinks.map(l => [l.getAttribute('href').slice(1), l])
+      );
+
+      let lastActive = null;
+
+      function setActive(id) {
+        if (id === lastActive) return;
+        lastActive = id;
+        navLinks.forEach(l => l.classList.remove('on'));
+        const link = linkMap.get(id);
+        if (link) link.classList.add('on');
+      }
+
+      // rootMargin: la sezione diventa "attiva" quando il suo top
+      // supera il 20% dall'alto della viewport
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) setActive(e.target.id);
+        });
+      }, {
+        threshold: 0,
+        rootMargin: '-15% 0px -75% 0px'
+      });
+
+      document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+      // Edge case: attiva "home" se si è tutto in cima
+      window.addEventListener('scroll', () => {
+        if (window.scrollY < 80) setActive('hero');
+      }, { passive: true });
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       6. EASTER EGG
+       – Konami code
+       – Digitare "nuoto" ovunque
+       – Focus trap: Tab rimane dentro il dialog finché è aperto
+       – Escape chiude
+       – Restore focus all'elemento che lo aveva prima
+    ═══════════════════════════════════════════════════ */
+    (function initEasterEgg() {
+      const egg      = document.getElementById('egg');
+      const closeBtn = document.getElementById('eggClose');
+      let prevFocus  = null;
+
+      const KONAMI = [
+        'ArrowUp','ArrowUp','ArrowDown','ArrowDown',
+        'ArrowLeft','ArrowRight','ArrowLeft','ArrowRight',
+        'b','a'
+      ];
+      let ki = 0;
+
+      // Sequenza Konami
+      document.addEventListener('keydown', e => {
+        if (egg.classList.contains('on')) return; // ignora se già aperto
+        if (e.key === KONAMI[ki]) {
+          ki++;
+          if (ki === KONAMI.length) { showEgg(); ki = 0; }
+        } else {
+          ki = e.key === KONAMI[0] ? 1 : 0;
+        }
+      });
+
+      // Digitare "nuoto"
+      let typed = '';
+      document.addEventListener('keypress', e => {
+        if (egg.classList.contains('on')) return;
+        typed += e.key.toLowerCase();
+        if (typed.includes('nuoto')) { showEgg(); typed = ''; return; }
+        if (typed.length > 20) typed = typed.slice(-20);
+      });
+
+      function showEgg() {
+        prevFocus = document.activeElement;
+        egg.classList.add('on');
+        egg.setAttribute('aria-hidden', 'false');
+        // Piccolo delay per attendere la transition prima del focus
+        setTimeout(() => closeBtn.focus(), 50);
+      }
+
+      function closeEgg() {
+        egg.classList.remove('on');
+        egg.setAttribute('aria-hidden', 'true');
+        if (prevFocus) prevFocus.focus();
+      }
+
+      closeBtn.addEventListener('click', closeEgg);
+
+      // Chiudi con Escape
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && egg.classList.contains('on')) closeEgg();
+      });
+
+      // Click fuori dalla box chiude
+      egg.addEventListener('click', e => {
+        if (e.target === egg) closeEgg();
+      });
+
+      // Focus trap: mantieni Tab e Shift+Tab dentro il dialog
+      egg.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return;
+        // Per ora l'unico elemento focusabile è closeBtn;
+        // se ne aggiungi altri, elencali qui
+        const focusable = egg.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      });
+    })();
+
+  </script>
+
+</body>
+</html>
