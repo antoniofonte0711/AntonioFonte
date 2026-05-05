@@ -2,24 +2,24 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Besley:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
-  --cream:      #f7f3ec;
-  --cream-2:    #ede8df;
-  --cream-3:    #e2dbd0;
-  --ink:        #1a1714;
-  --ink-2:      #2e2a25;
-  --ink-3:      #5a5248;
-  /* FIX: #9a9088 → #6b6560 per superare WCAG 4.5:1 */
-  --ink-4:      #6b6560;
-  --ink-5:      #a09890;
-  --accent:     #8b1a1a;
-  --accent-2:   #a32020;
-  --gold:       #b8960c;
+  --cream:      #ffffff;
+  --cream-2:    #f4f0e8;
+  --cream-3:    #e8e2d4;
+  --ink:        #0A2463;
+  --ink-2:      #0d2e7a;
+  --ink-3:      #2a4890;
+  --ink-4:      #4a6ab5;
+  --ink-5:      #7a96cc;
+  --accent:     #C9A84C;
+  --accent-2:   #e0bc5a;
+  --gold:       #C9A84C;
 
-  --ff-display: 'DM Serif Display', Georgia, serif;
-  --ff-text:    'DM Sans', system-ui, sans-serif;
+  --ff-display: 'Merriweather', Georgia, serif;
+  --ff-sub:     'Cormorant Garamond', Georgia, serif;
+  --ff-text:    'Besley', Georgia, serif;
   --ff-mono:    'DM Mono', 'Courier New', monospace;
   --max:        1100px;
   --col:        680px;
@@ -47,7 +47,6 @@ a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-rad
 p { color: var(--ink-3); }
 
 /* ── CURSOR ──────────────────────────────────────── */
-/* Usa transform (GPU compositor) invece di left/top — zero reflow */
 .cur {
   position: fixed;
   top: 0; left: 0;
@@ -72,7 +71,6 @@ p { color: var(--ink-3); }
 }
 .cur.hover { width: 10px; height: 10px; background: var(--accent); }
 .cur-ring.hover { width: 44px; height: 44px; border-color: rgba(139,26,26,0.5); }
-/* FIX: cursor ripristinato su dispositivi touch e reduced-motion */
 @media (hover: none) { .cur, .cur-ring { display: none; } body { cursor: auto; } }
 @media (prefers-reduced-motion: reduce) { .cur, .cur-ring { display: none; } body { cursor: auto; } }
 
@@ -148,13 +146,12 @@ p { color: var(--ink-3); }
 .egg-box h2 {
   font-family: var(--ff-display);
   font-size: 32px;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   margin-bottom: 16px;
   font-style: italic;
 }
 .egg-box p { color: var(--ink-5); font-size: 14px; margin-bottom: 32px; max-width: none; }
-/* FIX: <span> → <button> per accessibilità da tastiera */
 .egg-close {
   font-family: var(--ff-mono);
   font-size: 9px;
@@ -207,8 +204,8 @@ nav {
   justify-content: space-between;
 }
 .nav-logo {
-  font-family: var(--ff-display);
-  font-size: 18px;
+  font-family: var(--ff-sub);
+  font-size: 20px;
   font-weight: 400;
   font-style: italic;
   color: var(--ink);
@@ -255,7 +252,6 @@ main {
   padding: 0 48px;
 }
 
-/* thin rule */
 .rule {
   width: 100%;
   height: 1px;
@@ -263,7 +259,6 @@ main {
   margin: 0;
 }
 
-/* label */
 .lbl {
   font-family: var(--ff-mono);
   font-size: 9px;
@@ -272,7 +267,6 @@ main {
   color: var(--ink-4);
 }
 
-/* highlight span */
 .hl {
   color: var(--accent);
   font-style: italic;
@@ -316,10 +310,10 @@ main {
 }
 h1 {
   font-family: var(--ff-display);
-  font-size: clamp(64px, 10vw, 120px);
-  font-weight: 400;
-  line-height: .92;
-  letter-spacing: -.01em;
+  font-size: clamp(56px, 9vw, 110px);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -.02em;
   color: var(--ink);
   margin-bottom: 40px;
 }
@@ -335,7 +329,6 @@ h1 em {
   line-height: 1.9;
   max-width: 340px;
 }
-/* FIX: CTA primaria aggiunta sotto la descrizione */
 .hero-cta {
   display: flex;
   gap: 12px;
@@ -388,7 +381,7 @@ h1 em {
   gap: 4px;
 }
 .hero-stat-n {
-  font-family: var(--ff-display);
+  font-family: var(--ff-sub);
   font-size: 52px;
   font-weight: 400;
   color: var(--ink);
@@ -436,9 +429,9 @@ h1 em {
   gap: 8px;
 }
 .section-number {
-  font-family: var(--ff-display);
+  font-family: var(--ff-sub);
   font-size: 96px;
-  font-weight: 400;
+  font-weight: 300;
   color: var(--cream-3);
   line-height: 1;
   display: block;
@@ -447,10 +440,10 @@ h1 em {
 h2 {
   font-family: var(--ff-display);
   font-size: clamp(28px, 4vw, 44px);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -.01em;
   color: var(--ink);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 .bio {
   font-size: 16px;
@@ -517,7 +510,7 @@ h2 {
 .num-card:hover { background: var(--cream-2); }
 .num-n {
   display: block;
-  font-family: var(--ff-display);
+  font-family: var(--ff-sub);
   font-size: clamp(48px, 5vw, 68px);
   font-weight: 400;
   color: var(--ink);
@@ -578,9 +571,9 @@ h2 {
 .comp-item:first-child { border-top: 1px solid var(--cream-3); }
 .comp-item:hover { padding-left: 12px; }
 .comp-name {
-  font-family: var(--ff-display);
-  font-size: 22px;
-  font-weight: 400;
+  font-family: var(--ff-sub);
+  font-size: 24px;
+  font-weight: 500;
   color: var(--ink);
 }
 .comp-right {
@@ -602,13 +595,13 @@ h2 {
   width: 0;
   transition: width 1.6s cubic-bezier(.16,1,.3,1);
 }
-.comp-pct {
-  font-family: var(--ff-display);
-  font-size: 18px;
-  font-weight: 400;
-  color: var(--ink-4);
-  min-width: 36px;
+/* FIX: sostituito .comp-pct con .comp-badge — sistema stelle al posto delle percentuali */
+.comp-badge {
+  font-size: 13px;
+  color: var(--accent);
+  min-width: 80px;
   text-align: right;
+  letter-spacing: 2px;
 }
 .comp-lvl {
   font-family: var(--ff-mono);
@@ -616,7 +609,7 @@ h2 {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-5);
-  min-width: 60px;
+  min-width: 70px;
 }
 
 /* ── PROGETTI ─────────────────────────────────────── */
@@ -663,9 +656,9 @@ h2 {
   justify-content: space-between;
 }
 .proj-title {
-  font-family: var(--ff-display);
-  font-size: clamp(22px, 2.5vw, 30px);
-  font-weight: 400;
+  font-family: var(--ff-sub);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 500;
   color: var(--ink);
   margin-bottom: 12px;
 }
@@ -691,16 +684,16 @@ h2 {
   overflow: hidden;
   position: relative;
 }
-/* FIX: aspect-ratio per evitare layout shift */
 .proj-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(.5) brightness(.95);
+  /* FIX: saturate aumentato da .5 a .85, brightness portato a 1 */
+  filter: saturate(.85) brightness(1);
   transition: transform .7s cubic-bezier(.16,1,.3,1), filter .4s;
 }
-.proj-item:hover .proj-img-wrap img { transform: scale(1.04); filter: saturate(.7) brightness(1); }
+.proj-item:hover .proj-img-wrap img { transform: scale(1.04); filter: saturate(1) brightness(1.02); }
 
 /* ── NOW ──────────────────────────────────────────── */
 #now {
@@ -800,11 +793,12 @@ h2 {
 .cv-row:last-child { border-bottom: none; }
 .cv-row:hover { background: var(--cream-2); margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
 .cv-period {
-  font-family: var(--ff-display);
-  font-size: 15px;
+  font-family: var(--ff-sub);
+  font-size: 17px;
   font-weight: 400;
   color: var(--ink-4);
   padding-top: 2px;
+  font-style: italic;
 }
 .cv-content h3 {
   font-family: var(--ff-mono);
@@ -912,8 +906,8 @@ footer {
   gap: 16px;
 }
 .footer-logo {
-  font-family: var(--ff-display);
-  font-size: 22px;
+  font-family: var(--ff-sub);
+  font-size: 24px;
   font-weight: 400;
   font-style: italic;
   color: var(--ink-3);
@@ -951,31 +945,28 @@ footer {
   .cv-row:hover { margin: 0; padding-left: 0; padding-right: 0; }
   .nav-logo { font-size: 15px; }
   .hero-cta { flex-direction: column; }
+  .comp-bar-wrap { width: 80px; }
+  .comp-badge { min-width: 60px; font-size: 11px; }
 }
 @media (max-width: 520px) {
   .numeri-grid { grid-template-columns: 1fr; }
   .num-card { border-right: none; }
   section { padding-top: 80px; padding-bottom: 80px; }
   .comp-bar-wrap { width: 60px; }
+  .comp-badge { display: none; }
 }
 
 
 /* ══ STAGE PAGE ═════════════════════════════════════ */
-/* Nota: le variabili :root sono già definite sopra — questo blocco
-   contiene solo i componenti specifici della pagina stage */
 
-.lbl { font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-4); }
-
-/* INTRO */
 #intro {
   padding: 120px 0 80px;
   display: grid; grid-template-columns: 200px 1fr; gap: 0 80px;
   border-bottom: 1px solid var(--cream-3);
 }
-.s-num { font-family: var(--ff-display); font-size: 96px; font-weight: 400;
+.s-num { font-family: var(--ff-sub); font-size: 96px; font-weight: 300;
   color: var(--cream-3); line-height: 1; display: block; font-style: italic; }
 
-/* STAGE SECTION */
 .stage-section {
   padding: 100px 0;
   border-bottom: 1px solid var(--cream-3);
@@ -985,12 +976,12 @@ footer {
   margin-bottom: 64px; align-items: start;
 }
 .stage-n {
-  font-family: var(--ff-display); font-size: 96px; font-weight: 400;
+  font-family: var(--ff-sub); font-size: 96px; font-weight: 300;
   color: var(--cream-3); display: block; line-height: 1; font-style: italic;
 }
 .stage-title-area { display: flex; flex-direction: column; gap: 12px; }
 .stage-company {
-  font-family: var(--ff-display); font-size: clamp(36px,5vw,60px); font-weight: 400;
+  font-family: var(--ff-display); font-size: clamp(36px,5vw,60px); font-weight: 700;
   color: var(--ink);
 }
 .stage-badge {
@@ -999,7 +990,6 @@ footer {
   display: inline-block; width: fit-content;
 }
 
-/* INFO SCHEDA */
 .scheda {
   border: 1px solid var(--cream-3);
   margin-bottom: 56px;
@@ -1023,7 +1013,6 @@ footer {
 .act-list li { font-size: 14px; font-weight: 300; color: var(--ink); display: flex; gap: 14px; align-items: flex-start; }
 .act-list li::before { content: '—'; color: var(--accent); font-family: var(--ff-display); flex-shrink: 0; }
 
-/* RELAZIONE */
 .relazione-title {
   font-family: var(--ff-mono); font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--ink-4); border-bottom: 1px solid var(--cream-3);
@@ -1050,7 +1039,6 @@ footer {
 .rel-block:hover::before { transform: scaleY(1); }
 .rel-block p { font-size: 14px; font-weight: 300; line-height: 1.95; color: var(--ink-3); max-width: 660px; }
 
-/* STAGE RESPONSIVE */
 @media (max-width: 860px) {
   #intro, .stage-header { grid-template-columns: 1fr; gap: 24px; }
   .s-num, .stage-n { display: none; }

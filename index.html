@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Antonio Fonte — Web Designer, nuotatore agonista, studente di informatica a Milano. Portfolio scolastico 2026.">
+  <meta name="description" content="Antonio Fonte — Web Developer, nuotatore agonista, studente di informatica a Milano. Portfolio 2026.">
   <meta property="og:title" content="Antonio Fonte — Portfolio">
   <meta property="og:description" content="Scrivo codice di giorno, nuoto di notte, e ogni tanto recito davanti a gente che non se lo aspetta.">
   <meta property="og:type" content="website">
   <title>Antonio Fonte</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -26,13 +26,11 @@
   </div>
 
   <!-- EASTER EGG -->
-  <!-- FIX: aria-modal e role dialog per accessibilità corretta -->
   <div class="egg" id="egg" role="dialog" aria-modal="true" aria-labelledby="eggTitle" aria-hidden="true">
     <div class="egg-box">
       <p class="egg-label">// segreto sbloccato</p>
       <h2 id="eggTitle">Hai trovato il codice.</h2>
       <p>Non so cosa ti aspettavi, ma ora sai che leggo ogni cosa che scrivi sul mio sito.<br>Benvenuto nel club dei curiosi.</p>
-      <!-- FIX: <span> → <button> per raggiungibilità da tastiera -->
       <button class="egg-close" id="eggClose" type="button">× chiudi</button>
     </div>
   </div>
@@ -60,16 +58,17 @@
     <section id="hero" class="vis" style="opacity:1;transform:none;">
       <div class="hero-body">
         <div class="hero-left">
-          <p class="hero-issue">Portfolio — Anno Scolastico 2025/2026</p>
+          <!-- FIX: rimosso frame scolastico, sostituito con posizionamento professionale -->
+          <p class="hero-issue">Web Developer · Milano</p>
           <h1><span class="hl">Antonio</span><br>Fonte</h1>
           <p class="hero-desc">
             Scrivo codice di giorno, nuoto di notte,<br>
             e ogni tanto recito davanti a gente<br>che non se lo aspetta.
           </p>
-          <!-- FIX: CTA chiare per guidare l'utente (recruiter e visitatori) -->
           <div class="hero-cta">
             <a href="#progetti" class="btn-primary">Guarda i progetti →</a>
-            <a href="./ANTONIO_FONTE_curriculum.pdf" download class="btn-secondary">↓ Scarica CV</a>
+            <!-- FIX: filename CV aggiornato, senza spazi e senza "scuola" -->
+            <a href="./antonio-fonte-cv-2026.pdf" download class="btn-secondary">↓ Scarica CV</a>
           </div>
         </div>
         <div class="hero-right">
@@ -173,53 +172,54 @@
       <div>
         <h2>Quello che so fare —<br><span class="hl">e quanto ci metto</span></h2>
         <p style="margin-top:16px;font-size:15px;">Dalla progettazione web alla programmazione hardware.</p>
+        <!-- FIX: rimosso sistema percentuale, sostituito con livelli + stelle -->
         <div class="comp-list">
           <div class="comp-item">
             <span class="comp-name">HTML / CSS</span>
             <div class="comp-right">
-              <span class="comp-lvl">Alto</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="85"></div></div>
-              <span class="comp-pct">85%</span>
+              <span class="comp-lvl">Avanzato</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="80"></div></div>
+              <span class="comp-badge">★★★★☆</span>
             </div>
           </div>
           <div class="comp-item">
             <span class="comp-name">Web Design</span>
             <div class="comp-right">
               <span class="comp-lvl">Avanzato</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="95"></div></div>
-              <span class="comp-pct">95%</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="80"></div></div>
+              <span class="comp-badge">★★★★☆</span>
             </div>
           </div>
           <div class="comp-item">
             <span class="comp-name">WordPress</span>
             <div class="comp-right">
-              <span class="comp-lvl">Alto</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="75"></div></div>
-              <span class="comp-pct">75%</span>
+              <span class="comp-lvl">Competente</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="65"></div></div>
+              <span class="comp-badge">★★★☆☆</span>
             </div>
           </div>
           <div class="comp-item">
             <span class="comp-name">Reti</span>
             <div class="comp-right">
               <span class="comp-lvl">Base</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="60"></div></div>
-              <span class="comp-pct">60%</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="45"></div></div>
+              <span class="comp-badge">★★☆☆☆</span>
             </div>
           </div>
           <div class="comp-item">
             <span class="comp-name">Sistemi Operativi</span>
             <div class="comp-right">
               <span class="comp-lvl">Base</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="65"></div></div>
-              <span class="comp-pct">65%</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="50"></div></div>
+              <span class="comp-badge">★★☆☆☆</span>
             </div>
           </div>
           <div class="comp-item">
             <span class="comp-name">Arduino (C++)</span>
             <div class="comp-right">
-              <span class="comp-lvl">Base</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="55"></div></div>
-              <span class="comp-pct">55%</span>
+              <span class="comp-lvl">In crescita</span>
+              <div class="comp-bar-wrap"><div class="comp-bar" data-w="40"></div></div>
+              <span class="comp-badge">★★☆☆☆</span>
             </div>
           </div>
         </div>
@@ -243,18 +243,17 @@
           <span class="proj-num">01</span>
           <div class="proj-body">
             <div>
-              <p class="proj-title">Sito Web Portfolio</p>
-              <p class="proj-desc">Questo portfolio personale, realizzato interamente in HTML e CSS. Il sito raccoglie le mie competenze, i progetti svolti durante l'anno scolastico e il percorso formativo.</p>
+              <p class="proj-title">Gioco-py semaforo </p>
+              <p class="proj-desc">Questo e un giochio creato in classe, consiste nel essere attenti a quando il semaforo scatta e premere spazio per vedere la velocità dei riflessi.</p>
             </div>
             <div class="proj-tags">
-              <span class="ptag">HTML</span>
-              <span class="ptag">CSS</span>
-              <span class="ptag">Progetto</span>
+              <span class="ptag">python</span>
+              
             </div>
           </div>
           <div class="proj-img-wrap">
-            <!-- FIX: width e height aggiunti per prevenire layout shift -->
-            <img src="./Screenshot 2026-04-14 102501.png" alt="Portfolio personale di Antonio Fonte" width="320" height="240" loading="lazy">
+            <!-- Aggiorna src quando hai l'immagine definitiva -->
+            <img src="./semaforo a rezione.png" alt="Progetto python" width="320" height="240" loading="lazy">
           </div>
         </div>
         <div class="proj-item">
@@ -266,29 +265,32 @@
             </div>
             <div class="proj-tags">
               <span class="ptag">WordPress</span>
-              <span class="ptag">Web Design</span>
-              <span class="ptag">Stage</span>
+              <span class="ptag">HTML</span>
+              <span class="ptag">css</span>
             </div>
           </div>
           <div class="proj-img-wrap">
-            <img src="./Screenshot 2026-04-14 100559.png" alt="Sito FalangoneGroup" width="320" height="240" loading="lazy">
+            <!-- Aggiorna src quando hai l'immagine definitiva -->
+            <img src="./sito falalgnone.png" alt="Sito FalangoneGroup" width="320" height="240" loading="lazy">
           </div>
         </div>
         <div class="proj-item">
           <span class="proj-num">03</span>
           <div class="proj-body">
             <div>
-              <p class="proj-title">Progetto Arduino</p>
-              <p class="proj-desc">Realizzazione di un circuito con Arduino nell'ambito delle attività scolastiche. Il progetto ha permesso di applicare concetti di elettronica di base e programmazione in C++.</p>
+              <p class="proj-title">Progetto sito HTML</p>
+              <p class="proj-desc">ho realizzato il sito per l'azienda di una persona per me importante e l'ho donato come regalo di matrimonio</p>
             </div>
             <div class="proj-tags">
-              <span class="ptag">Arduino</span>
-              <span class="ptag">C++</span>
-              <span class="ptag">Laboratorio</span>
+              <span class="ptag">HTML</span>
+              <span class="ptag">CSS</span>
+              <span class="ptag">JavaScript</span>
+              <span class="ptag">ai</span>
             </div>
           </div>
           <div class="proj-img-wrap">
-            <img src="./Screenshot 2026-02-27 111759.png" alt="Progetto Arduino" width="320" height="240" loading="lazy">
+            <!-- Aggiorna src quando hai l'immagine definitiva -->
+            <img src="./mosto.png" alt="Progetto Mosto" width="320" height="240" loading="lazy">
           </div>
         </div>
       </div>
@@ -344,7 +346,7 @@
       </div>
       <div class="cv-dl-bar">
         <p>Scarica la versione completa in PDF.</p>
-        <a href="./antonio-fonte-cv.pdf" download class="btn-dl">↓ &nbsp;Scarica CV</a>
+        <a href="./antonio-fonte-cv-2026.pdf" download class="btn-dl">↓ &nbsp;Scarica CV</a>
       </div>
 
       <div class="cv-block">
@@ -397,7 +399,7 @@
           <span class="cv-period">2025</span>
           <div class="cv-content">
             <h3>Cameriere</h3>
-            <span class="cv-where">Gelateria Desideria — Milano</span>
+            <span class="cv-where">Gelateria Desideria — Nardò(LE)</span>
             <p>Servizio al cliente, gestione ordini e supporto operativo. Luglio – Agosto 2025.</p>
           </div>
         </div>
@@ -445,17 +447,18 @@
           <span class="lbl">Contatti</span>
         </div>
         <div>
-          <h2>Non mordo.<br><span class="hl">Scrivi.</span></h2>
-          <p style="margin-top:16px;font-size:15px;">Puoi contattarmi tramite email. Rispondo — promesso.</p>
+          <h2>Non mordo.<br><span class="hl">Scrivimi.</span></h2>
+          <p style="margin-top:16px;font-size:15px;">Puoi contattarmi tramite email o trovarmi sui miei profili. Rispondo — promesso.</p>
         </div>
       </div>
+      <!-- FIX: aggiunti GitHub e LinkedIn -->
       <div class="contact-list">
         <a href="mailto:antonio.fonte@edu.immaginazioneelavoro.it" class="contact-row">
           <span class="contact-type">Email</span>
           <span>antonio.fonte@edu.immaginazioneelavoro.it</span>
         </a>
-      </div>
-      <p class="konami-hint">// c'è qualcosa di nascosto qui. prova a digitare qualcosa.</p>
+       </div>
+     
     </section>
 
   </main>
@@ -470,9 +473,6 @@
 
     /* ═══════════════════════════════════════════════════
        1. LOADER SMART
-       Si chiude al window.load reale, non a tempo fisso.
-       Su connessioni veloci è immediato; su lente il fallback
-       (1.5 s) impedisce che la pagina resti bloccata.
     ═══════════════════════════════════════════════════ */
     (function initLoader() {
       const loader = document.getElementById('loader');
@@ -484,7 +484,6 @@
         loader.classList.add('done');
       }
 
-      // Minimo visuale: aspetta sempre che l'animazione della linea finisca
       const MIN_MS = 500;
       const start  = performance.now();
 
@@ -500,13 +499,12 @@
         window.addEventListener('load', dismissAfterMin, { once: true });
       }
 
-      // Fallback di sicurezza su connessioni lente
       setTimeout(dismiss, 1600);
     })();
 
 
     /* ═══════════════════════════════════════════════════
-       2. PAGE FADE — transizione in uscita verso altre pagine
+       2. PAGE FADE
     ═══════════════════════════════════════════════════ */
     (function initPageFade() {
       document.querySelectorAll('a[href]').forEach(link => {
@@ -523,15 +521,8 @@
 
     /* ═══════════════════════════════════════════════════
        3. CURSOR MAGNETICO
-       – Dot: segue il mouse 1:1 (nessun ritardo percettivo)
-       – Ring: lerp con inerzia differenziata per X e Y
-       – magnetismo: su elementi interattivi il ring si
-         "aggancia" al centro dell'elemento invece di
-         seguire il mouse pixel per pixel
-       – pausa RAF quando la tab è nascosta (performance)
     ═══════════════════════════════════════════════════ */
     (function initCursor() {
-      // Niente cursor custom su touch o reduced-motion
       const noPointer = window.matchMedia('(hover: none)').matches;
       const noMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (noPointer || noMotion) return;
@@ -539,50 +530,44 @@
       const dot  = document.getElementById('cur');
       const ring = document.getElementById('curRing');
 
-      let mx = window.innerWidth / 2,  my = window.innerHeight / 2;  // posizione mouse
-      let rx = mx, ry = my;                                            // posizione ring
-      let magnetX = null, magnetY = null;                              // target magnetico
-      let rafId   = null;
+      let mx = window.innerWidth / 2,  my = window.innerHeight / 2;
+      let rx = mx, ry = my;
+      let magnetX = null, magnetY = null;
       let paused  = false;
 
-      // Lerp: frizione normale vs frizione ridotta in hover
       const LERP_NORMAL = 0.12;
       const LERP_HOVER  = 0.18;
 
       document.addEventListener('mousemove', e => {
         mx = e.clientX;
         my = e.clientY;
-        // Sposta il dot immediatamente (zero lag visivo)
         dot.style.transform = `translate(calc(-50% + ${mx}px), calc(-50% + ${my}px))`;
       });
 
       function loop() {
         if (!paused) {
-          const tx    = magnetX !== null ? magnetX : mx;
-          const ty    = magnetY !== null ? magnetY : my;
-          const lerp  = magnetX !== null ? LERP_HOVER : LERP_NORMAL;
+          const tx   = magnetX !== null ? magnetX : mx;
+          const ty   = magnetY !== null ? magnetY : my;
+          const lerp = magnetX !== null ? LERP_HOVER : LERP_NORMAL;
 
           rx += (tx - rx) * lerp;
           ry += (ty - ry) * lerp;
 
           ring.style.transform = `translate(calc(-50% + ${rx}px), calc(-50% + ${ry}px))`;
         }
-        rafId = requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
       }
       loop();
 
-      // Pausa RAF quando la tab è in background
       document.addEventListener('visibilitychange', () => {
         paused = document.hidden;
       });
 
-      // Rimuove left/top ereditati dal vecchio codice (usiamo transform)
       dot.style.left  = '0';
       dot.style.top   = '0';
       ring.style.left = '0';
       ring.style.top  = '0';
 
-      // Magnetismo sugli elementi interattivi
       const INTERACTIVE = 'a, button, .tag, .cv-skill, .comp-item, .proj-item, .now-card, .num-card';
 
       function onEnter(e) {
@@ -594,7 +579,6 @@
       }
 
       function onMove(e) {
-        // Aggiorna il centro magnetico se l'elemento cambia posizione (scroll)
         const rect = e.currentTarget.getBoundingClientRect();
         magnetX = rect.left + rect.width  / 2;
         magnetY = rect.top  + rect.height / 2;
@@ -616,25 +600,21 @@
       }
       attachCursorListeners();
 
-      // Re-attach se vengono aggiunti nuovi elementi (future-proof)
       window._reattachCursor = attachCursorListeners;
     })();
 
 
     /* ═══════════════════════════════════════════════════
-       4. SCROLL ANIMATIONS — IntersectionObserver
-       Gestisce: reveal sezioni, animazione barre competenze,
-       contatori numerici con easing cubico (non lineare).
+       4. SCROLL ANIMATIONS
     ═══════════════════════════════════════════════════ */
     (function initScrollAnimations() {
-      // Easing cubico in uscita per i contatori — più naturale del lineare
       function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
       function animateCounter(el) {
-        const target   = parseInt(el.dataset.target, 10);
+        const target = parseInt(el.dataset.target, 10);
         if (isNaN(target) || target === 0) return;
 
-        const DURATION = 900; // ms
+        const DURATION = 900;
         const startTime = performance.now();
 
         function tick(now) {
@@ -653,12 +633,10 @@
           const section = entry.target;
           section.classList.add('vis');
 
-          // Barre competenze con stagger per effetto cascata
           section.querySelectorAll('.comp-bar[data-w]').forEach((bar, i) => {
             setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 80 + i * 60);
           });
 
-          // Contatori con easing
           section.querySelectorAll('.num-n[data-target]').forEach(animateCounter);
 
           observer.unobserve(section);
@@ -672,18 +650,12 @@
 
 
     /* ═══════════════════════════════════════════════════
-       5. NAV ACTIVE — stato preciso con scroll spy
-       Usa rootMargin per marcare la sezione "attiva" non
-       appena entra nella fascia superiore della viewport,
-       non quando occupa il 40% della schermata.
-       Tiene traccia dell'ultima sezione visibile per non
-       resettare lo stato quando si scorre tra sezioni.
+       5. NAV ACTIVE
     ═══════════════════════════════════════════════════ */
     (function initNavSpy() {
       const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
       if (!navLinks.length) return;
 
-      // Map section id → nav link per lookup O(1)
       const linkMap = new Map(
         navLinks.map(l => [l.getAttribute('href').slice(1), l])
       );
@@ -698,8 +670,6 @@
         if (link) link.classList.add('on');
       }
 
-      // rootMargin: la sezione diventa "attiva" quando il suo top
-      // supera il 20% dall'alto della viewport
       const spy = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) setActive(e.target.id);
@@ -711,7 +681,6 @@
 
       document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
 
-      // Edge case: attiva "home" se si è tutto in cima
       window.addEventListener('scroll', () => {
         if (window.scrollY < 80) setActive('hero');
       }, { passive: true });
@@ -720,11 +689,6 @@
 
     /* ═══════════════════════════════════════════════════
        6. EASTER EGG
-       – Konami code
-       – Digitare "nuoto" ovunque
-       – Focus trap: Tab rimane dentro il dialog finché è aperto
-       – Escape chiude
-       – Restore focus all'elemento che lo aveva prima
     ═══════════════════════════════════════════════════ */
     (function initEasterEgg() {
       const egg      = document.getElementById('egg');
@@ -738,9 +702,8 @@
       ];
       let ki = 0;
 
-      // Sequenza Konami
       document.addEventListener('keydown', e => {
-        if (egg.classList.contains('on')) return; // ignora se già aperto
+        if (egg.classList.contains('on')) return;
         if (e.key === KONAMI[ki]) {
           ki++;
           if (ki === KONAMI.length) { showEgg(); ki = 0; }
@@ -749,7 +712,6 @@
         }
       });
 
-      // Digitare "nuoto"
       let typed = '';
       document.addEventListener('keypress', e => {
         if (egg.classList.contains('on')) return;
@@ -762,7 +724,6 @@
         prevFocus = document.activeElement;
         egg.classList.add('on');
         egg.setAttribute('aria-hidden', 'false');
-        // Piccolo delay per attendere la transition prima del focus
         setTimeout(() => closeBtn.focus(), 50);
       }
 
@@ -774,21 +735,16 @@
 
       closeBtn.addEventListener('click', closeEgg);
 
-      // Chiudi con Escape
       document.addEventListener('keydown', e => {
         if (e.key === 'Escape' && egg.classList.contains('on')) closeEgg();
       });
 
-      // Click fuori dalla box chiude
       egg.addEventListener('click', e => {
         if (e.target === egg) closeEgg();
       });
 
-      // Focus trap: mantieni Tab e Shift+Tab dentro il dialog
       egg.addEventListener('keydown', e => {
         if (e.key !== 'Tab') return;
-        // Per ora l'unico elemento focusabile è closeBtn;
-        // se ne aggiungi altri, elencali qui
         const focusable = egg.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
         const first = focusable[0];
         const last  = focusable[focusable.length - 1];
