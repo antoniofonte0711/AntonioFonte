@@ -6,13 +6,13 @@ html { scroll-behavior: smooth; font-size: 16px; }
 
 :root {
   --cream:      #ffffff;
-  --cream-2:    #f4f0e8;
-  --cream-3:    #e8e2d4;
-  --ink:        #0A2463;
-  --ink-2:      #0d2e7a;
-  --ink-3:      #2a4890;
-  --ink-4:      #4a6ab5;
-  --ink-5:      #7a96cc;
+  --cream-2:    #f7f5f0;
+  --cream-3:    #e8e4db;
+  --ink:        #0d0d0d;
+  --ink-2:      #1a1a1a;
+  --ink-3:      #3a3a3a;
+  --ink-4:      #6b6b6b;
+  --ink-5:      #999999;
   --accent:     #C9A84C;
   --accent-2:   #e0bc5a;
   --gold:       #C9A84C;
@@ -31,7 +31,14 @@ html { scroll-behavior: smooth; font-size: 16px; }
 ::-webkit-scrollbar-thumb { background: var(--ink-4); }
 
 body {
-  background: var(--cream);
+  background-color: var(--cream);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 28px,
+    rgba(201,168,76,0.07) 28px,
+    rgba(201,168,76,0.07) 29px
+  );
   color: var(--ink);
   font-family: var(--ff-text);
   font-weight: 400;
@@ -70,7 +77,7 @@ p { color: var(--ink-3); }
   transition: width .3s, height .3s, border-color .3s;
 }
 .cur.hover { width: 10px; height: 10px; background: var(--accent); }
-.cur-ring.hover { width: 44px; height: 44px; border-color: rgba(139,26,26,0.5); }
+.cur-ring.hover { width: 44px; height: 44px; border-color: rgba(201,168,76,0.5); }
 @media (hover: none) { .cur, .cur-ring { display: none; } body { cursor: auto; } }
 @media (prefers-reduced-motion: reduce) { .cur, .cur-ring { display: none; } body { cursor: auto; } }
 
@@ -78,7 +85,7 @@ p { color: var(--ink-3); }
 .loader {
   position: fixed;
   inset: 0;
-  background: var(--ink);
+  background: var(--ink-2);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -116,7 +123,7 @@ p { color: var(--ink-3); }
 .egg {
   position: fixed;
   inset: 0;
-  background: rgba(26,23,20,0.96);
+  background: rgba(13,13,13,0.96);
   z-index: 9500;
   display: flex;
   align-items: center;
@@ -131,8 +138,8 @@ p { color: var(--ink-3); }
   max-width: 440px;
   padding: 64px 56px;
   text-align: center;
-  border: 1px solid rgba(247,243,236,0.12);
-  background: rgba(26,23,20,0.8);
+  border: 1px solid rgba(201,168,76,0.18);
+  background: rgba(13,13,13,0.85);
   animation: fadeup .5s cubic-bezier(.16,1,.3,1) both;
 }
 .egg-label {
@@ -191,7 +198,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(247,243,236,0.92);
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--cream-3);
 }
