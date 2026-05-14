@@ -9,6 +9,113 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Besley:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PAGE FADE-IN simmetrico ── */
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    body {
+      animation: pageFadeIn 0.4s ease forwards;
+    }
+
+    /* ── SCROLL REVEAL direzionale ── */
+    section.reveal-left  { transform: translateX(-20px); }
+    section.reveal-right { transform: translateX(20px); }
+    section.reveal-left.vis,
+    section.reveal-right.vis { transform: translateX(0); }
+
+    /* ── STAGGER scheda-row ── */
+    .scheda-row {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s cubic-bezier(.16,1,.3,1), transform 0.55s cubic-bezier(.16,1,.3,1), background 0.2s;
+    }
+    .stage-section.vis .scheda-row:nth-child(1) { transition-delay: 60ms; }
+    .stage-section.vis .scheda-row:nth-child(2) { transition-delay: 130ms; }
+    .stage-section.vis .scheda-row:nth-child(3) { transition-delay: 200ms; }
+    .stage-section.vis .scheda-row:nth-child(4) { transition-delay: 270ms; }
+    .stage-section.vis .scheda-row { opacity: 1; transform: translateY(0); }
+
+    /* ── STAGGER act-list li ── */
+    .act-list li {
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.5s cubic-bezier(.16,1,.3,1), transform 0.5s cubic-bezier(.16,1,.3,1);
+    }
+    .stage-section.vis .act-list li:nth-child(1) { transition-delay: 300ms; }
+    .stage-section.vis .act-list li:nth-child(2) { transition-delay: 380ms; }
+    .stage-section.vis .act-list li:nth-child(3) { transition-delay: 460ms; }
+    .stage-section.vis .act-list li:nth-child(4) { transition-delay: 540ms; }
+    .stage-section.vis .act-list li:nth-child(5) { transition-delay: 620ms; }
+    .stage-section.vis .act-list li { opacity: 1; transform: translateX(0); }
+
+    /* ── STAGGER rel-block ── */
+    .rel-block {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(.16,1,.3,1), transform 0.65s cubic-bezier(.16,1,.3,1), background 0.2s;
+    }
+    .rel-block::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--accent);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .rel-block:hover::before { transform: scaleY(1); }
+    .stage-section.vis .rel-block:nth-child(1) { transition-delay: 100ms; }
+    .stage-section.vis .rel-block:nth-child(2) { transition-delay: 200ms; }
+    .stage-section.vis .rel-block:nth-child(3) { transition-delay: 300ms; }
+    .stage-section.vis .rel-block { opacity: 1; transform: translateY(0); }
+
+    /* ── STAGE HEADER numero animato ── */
+    .stage-n {
+      display: block;
+      transition: color 0.6s ease, transform 0.6s cubic-bezier(.16,1,.3,1);
+    }
+    .stage-section.vis .stage-n {
+      animation: stageNumIn 0.8s cubic-bezier(.16,1,.3,1) both;
+    }
+    @keyframes stageNumIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STAGE COMPANY titolo ── */
+    .stage-company {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1) 0.1s, transform 0.7s cubic-bezier(.16,1,.3,1) 0.1s;
+    }
+    .stage-section.vis .stage-company { opacity: 1; transform: translateY(0); }
+
+    /* ── STAGE BADGE ── */
+    .stage-badge {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s cubic-bezier(.16,1,.3,1) 0.2s, transform 0.6s cubic-bezier(.16,1,.3,1) 0.2s;
+    }
+    .stage-section.vis .stage-badge { opacity: 1; transform: translateY(0); }
+
+    /* ── INTRO heading stagger ── */
+    #intro h1 {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(.16,1,.3,1) 0.1s, transform 0.8s cubic-bezier(.16,1,.3,1) 0.1s;
+    }
+    #intro.vis h1 { opacity: 1; transform: translateY(0); }
+    #intro p {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1) 0.25s, transform 0.7s cubic-bezier(.16,1,.3,1) 0.25s;
+    }
+    #intro.vis p { opacity: 1; transform: translateY(0); }
+
+    /* ── CURSOR su stage-section e scheda-row ── */
+    .stage-section, .scheda-row { cursor: none; }
+    @media (hover: none) { .stage-section, .scheda-row { cursor: auto; } }
+  </style>
 </head>
 <body>
 
@@ -37,6 +144,7 @@
 
   <main>
 
+    <!-- INTRO -->
     <section id="intro" class="vis" style="opacity:1;transform:none;">
       <div>
         <span class="s-num">S</span>
@@ -53,7 +161,7 @@
     </section>
 
     <!-- STAGE 1 — ScaiTecno -->
-    <section class="stage-section">
+    <section class="stage-section reveal-right">
       <div class="stage-header">
         <span class="stage-n">01</span>
         <div class="stage-title-area">
@@ -109,7 +217,7 @@
     </section>
 
     <!-- STAGE 2 — FalangoneGroup -->
-    <section class="stage-section" style="border-bottom:none;">
+    <section class="stage-section reveal-left" style="border-bottom:none;">
       <div class="stage-header">
         <span class="stage-n">02</span>
         <div class="stage-title-area">
@@ -199,16 +307,20 @@
       setTimeout(dismiss, 1600);
     })();
 
+
     /* ── PAGE FADE ───────────────────────────────────── */
-    document.querySelectorAll('a[href]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.body.classList.add('page-out');
-        setTimeout(() => { window.location.href = href; }, 380);
+    (function initPageFade() {
+      document.querySelectorAll('a[href]').forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          document.body.classList.add('page-out');
+          setTimeout(() => { window.location.href = href; }, 380);
+        });
       });
-    });
+    })();
+
 
     /* ── CURSOR MAGNETICO ────────────────────────────── */
     (function initCursor() {
@@ -223,6 +335,9 @@
       let magnetX = null, magnetY = null;
       let paused = false;
 
+      const LERP_NORMAL = 0.12;
+      const LERP_HOVER  = 0.18;
+
       document.addEventListener('mousemove', e => {
         mx = e.clientX; my = e.clientY;
         dot.style.transform = `translate(calc(-50% + ${mx}px), calc(-50% + ${my}px))`;
@@ -232,7 +347,7 @@
         if (!paused) {
           const tx   = magnetX !== null ? magnetX : mx;
           const ty   = magnetY !== null ? magnetY : my;
-          const lerp = magnetX !== null ? 0.18 : 0.12;
+          const lerp = magnetX !== null ? LERP_HOVER : LERP_NORMAL;
           rx += (tx - rx) * lerp;
           ry += (ty - ry) * lerp;
           ring.style.transform = `translate(calc(-50% + ${rx}px), calc(-50% + ${ry}px))`;
@@ -244,23 +359,35 @@
       dot.style.left = ring.style.left = '0';
       dot.style.top  = ring.style.top  = '0';
 
-      document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', e => {
-          const r = e.currentTarget.getBoundingClientRect();
-          magnetX = r.left + r.width / 2;
-          magnetY = r.top  + r.height / 2;
-          dot.classList.add('hover');
-          ring.classList.add('hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          magnetX = magnetY = null;
-          dot.classList.remove('hover');
-          ring.classList.remove('hover');
-        });
+      const INTERACTIVE = 'a, button, .stage-section, .scheda-row, .rel-block';
+
+      function onEnter(e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        magnetX = rect.left + rect.width  / 2;
+        magnetY = rect.top  + rect.height / 2;
+        dot.classList.add('hover');
+        ring.classList.add('hover');
+      }
+      function onMove(e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        magnetX = rect.left + rect.width  / 2;
+        magnetY = rect.top  + rect.height / 2;
+      }
+      function onLeave() {
+        magnetX = magnetY = null;
+        dot.classList.remove('hover');
+        ring.classList.remove('hover');
+      }
+
+      document.querySelectorAll(INTERACTIVE).forEach(el => {
+        el.addEventListener('mouseenter', onEnter);
+        el.addEventListener('mousemove',  onMove);
+        el.addEventListener('mouseleave', onLeave);
       });
     })();
 
-    /* ── SCROLL REVEAL ───────────────────────────────── */
+
+    /* ── SCROLL REVEAL con stagger elementi ──────────── */
     (function initReveal() {
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -268,12 +395,13 @@
           e.target.classList.add('vis');
           obs.unobserve(e.target);
         });
-      }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 
       document.querySelectorAll('section').forEach(s => {
         if (!s.classList.contains('vis')) obs.observe(s);
       });
     })();
+
   </script>
 
 </body>

@@ -10,8 +10,216 @@
   <title>Antonio Fonte</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Besley:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PAGE FADE-IN (simmetrico al fade-out) ── */
+    @keyframes pageFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    body {
+      animation: pageFadeIn 0.4s ease forwards;
+    }
+
+    /* ── STAGGER now-card ── */
+    .now-grid .now-card:nth-child(1) { transition-delay: 0ms; }
+    .now-grid .now-card:nth-child(2) { transition-delay: 80ms; }
+    .now-grid .now-card:nth-child(3) { transition-delay: 160ms; }
+    .now-grid .now-card:nth-child(4) { transition-delay: 240ms; }
+
+    /* ── STAGGER num-card ── */
+    .numeri-grid .num-card:nth-child(1) { transition-delay: 0ms; }
+    .numeri-grid .num-card:nth-child(2) { transition-delay: 80ms; }
+    .numeri-grid .num-card:nth-child(3) { transition-delay: 160ms; }
+    .numeri-grid .num-card:nth-child(4) { transition-delay: 240ms; }
+
+    /* Le card partono invisibili e traslate, poi vengono animate via JS */
+    #now.vis .now-card,
+    #numeri.vis .num-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .now-card, .num-card {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(.16,1,.3,1), transform 0.7s cubic-bezier(.16,1,.3,1), background 0.25s;
+    }
+
+    /* ── NOW-CARD clickabile ── */
+    .now-card {
+      cursor: none;
+      position: relative;
+    }
+    @media (hover: none) { .now-card { cursor: pointer; } }
+    .now-card-hint {
+      font-family: var(--ff-mono);
+      font-size: 8px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-5);
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .now-card-hint::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 1px;
+      background: var(--ink-5);
+      transition: background 0.2s, width 0.3s;
+    }
+    .now-card:hover .now-card-hint { color: var(--accent); }
+    .now-card:hover .now-card-hint::before { background: var(--accent); width: 24px; }
+
+    /* ── NOW MODAL ── */
+    .now-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(16px);
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s cubic-bezier(.16,1,.3,1), visibility 0.4s;
+    }
+    .now-modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .now-modal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 900px;
+      width: 100%;
+      border: 1px solid rgba(201,168,76,0.15);
+      background: rgba(13,13,13,0.6);
+      overflow: hidden;
+      transform: translateY(32px) scale(0.97);
+      transition: transform 0.5s cubic-bezier(.16,1,.3,1);
+    }
+    .now-modal-overlay.open .now-modal {
+      transform: translateY(0) scale(1);
+    }
+    .now-modal-img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.85);
+      transition: filter 0.4s;
+    }
+    .now-modal-overlay.open .now-modal-img {
+      filter: saturate(1);
+    }
+    .now-modal-content {
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    .now-modal-label {
+      font-family: var(--ff-mono);
+      font-size: 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .now-modal-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .now-modal-title {
+      font-family: var(--ff-display);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .now-modal-desc {
+      font-family: var(--ff-text);
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--ink-4);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+    .now-modal-close {
+      font-family: var(--ff-mono);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+      cursor: none;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(247,243,236,0.25);
+      padding: 0 0 2px 0;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+      width: fit-content;
+    }
+    .now-modal-close:hover, .now-modal-close:focus-visible {
+      opacity: 1;
+      outline: none;
+    }
+    @media (hover: none) { .now-modal-close { cursor: pointer; } }
+
+    @media (max-width: 700px) {
+      .now-modal { grid-template-columns: 1fr; }
+      .now-modal-img { min-height: 240px; max-height: 280px; }
+      .now-modal-content { padding: 32px 28px; }
+    }
+
+    /* ── PARALLAX img progetti ── */
+    .proj-img-wrap {
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/9;
+    }
+    .proj-img-wrap img {
+      will-change: transform;
+      transition: transform 0.7s cubic-bezier(.16,1,.3,1), filter 0.4s;
+    }
+
+    /* ── SCROLL REVEAL variante direzionale ── */
+    section.reveal-left  { transform: translateX(-20px); }
+    section.reveal-right { transform: translateX(20px); }
+    section.reveal-left.vis,
+    section.reveal-right.vis { transform: translateX(0); }
+
+    /* ── STAGGER comp-item ── */
+    .comp-item {
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: opacity 0.6s cubic-bezier(.16,1,.3,1), transform 0.6s cubic-bezier(.16,1,.3,1), padding-left 0.3s;
+    }
+    #competenze.vis .comp-item:nth-child(1) { transition-delay: 0ms; }
+    #competenze.vis .comp-item:nth-child(2) { transition-delay: 80ms; }
+    #competenze.vis .comp-item:nth-child(3) { transition-delay: 160ms; }
+    #competenze.vis .comp-item:nth-child(4) { transition-delay: 240ms; }
+    #competenze.vis .comp-item:nth-child(5) { transition-delay: 320ms; }
+    #competenze.vis .comp-item:nth-child(6) { transition-delay: 400ms; }
+    #competenze.vis .comp-item { opacity: 1; transform: translateX(0); }
+  </style>
 </head>
 <body>
 
@@ -32,6 +240,19 @@
       <h2 id="eggTitle">Hai trovato il codice.</h2>
       <p>Non so cosa ti aspettavi, ma ora sai che leggo ogni cosa che scrivi sul mio sito.<br>Benvenuto nel club dei curiosi.</p>
       <button class="egg-close" id="eggClose" type="button">× chiudi</button>
+    </div>
+  </div>
+
+  <!-- NOW MODAL -->
+  <div class="now-modal-overlay" id="nowModalOverlay" role="dialog" aria-modal="true" aria-labelledby="nowModalTitle" aria-hidden="true">
+    <div class="now-modal" id="nowModal">
+      <img class="now-modal-img" id="nowModalImg" src="" alt="" />
+      <div class="now-modal-content">
+        <p class="now-modal-label" id="nowModalLabel"></p>
+        <h2 class="now-modal-title" id="nowModalTitle"></h2>
+        <p class="now-modal-desc" id="nowModalDesc"></p>
+        <button class="now-modal-close" id="nowModalClose" type="button">× chiudi</button>
+      </div>
     </div>
   </div>
 
@@ -58,7 +279,6 @@
     <section id="hero" class="vis" style="opacity:1;transform:none;">
       <div class="hero-body">
         <div class="hero-left">
-          <!-- FIX: rimosso frame scolastico, sostituito con posizionamento professionale -->
           <p class="hero-issue">Web Developer · Milano</p>
           <h1><span class="hl">Antonio</span><br>Fonte</h1>
           <p class="hero-desc">
@@ -67,7 +287,6 @@
           </p>
           <div class="hero-cta">
             <a href="#progetti" class="btn-primary">Guarda i progetti →</a>
-            <!-- FIX: filename CV aggiornato, senza spazi e senza "scuola" -->
             <a href="./antonio-fonte-cv-2026.pdf" download class="btn-secondary">↓ Scarica CV</a>
           </div>
         </div>
@@ -99,7 +318,7 @@
     </section>
 
     <!-- CHI SONO -->
-    <section id="chi-sono">
+    <section id="chi-sono" class="reveal-right">
       <div class="section-aside">
         <span class="section-number">01</span>
         <span class="lbl">Chi sono</span>
@@ -128,7 +347,7 @@
     </section>
 
     <!-- NUMERI -->
-    <section id="numeri">
+    <section id="numeri" class="reveal-left">
       <div class="numeri-head">
         <div>
           <span class="section-number">02</span>
@@ -164,7 +383,7 @@
     </section>
 
     <!-- COMPETENZE -->
-    <section id="competenze">
+    <section id="competenze" class="reveal-right">
       <div class="section-aside">
         <span class="section-number">03</span>
         <span class="lbl">Competenze</span>
@@ -172,7 +391,6 @@
       <div>
         <h2>Quello che so fare —<br><span class="hl">e quanto ci metto</span></h2>
         <p style="margin-top:16px;font-size:15px;">Dalla progettazione web alla programmazione hardware.</p>
-        <!-- FIX: rimosso sistema percentuale, sostituito con livelli + stelle -->
         <div class="comp-list">
           <div class="comp-item">
             <span class="comp-name">HTML / CSS</span>
@@ -214,20 +432,13 @@
               <span class="comp-badge">★★☆☆☆</span>
             </div>
           </div>
-          <div class="comp-item">
-            <span class="comp-name">Arduino (C++)</span>
-            <div class="comp-right">
-              <span class="comp-lvl">In crescita</span>
-              <div class="comp-bar-wrap"><div class="comp-bar" data-w="40"></div></div>
-              <span class="comp-badge">★★☆☆☆</span>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
 
     <!-- PROGETTI -->
-    <section id="progetti">
+    <section id="progetti" class="reveal-left">
       <div class="progetti-head">
         <div>
           <span class="section-number">04</span>
@@ -248,11 +459,9 @@
             </div>
             <div class="proj-tags">
               <span class="ptag">python</span>
-              
             </div>
           </div>
           <div class="proj-img-wrap">
-            <!-- Aggiorna src quando hai l'immagine definitiva -->
             <img src="./semaforo a rezione.png" alt="Progetto python" width="320" height="240" loading="lazy">
           </div>
         </div>
@@ -270,7 +479,6 @@
             </div>
           </div>
           <div class="proj-img-wrap">
-            <!-- Aggiorna src quando hai l'immagine definitiva -->
             <img src="./sito falalgnone.png" alt="Sito FalangoneGroup" width="320" height="240" loading="lazy">
           </div>
         </div>
@@ -289,7 +497,6 @@
             </div>
           </div>
           <div class="proj-img-wrap">
-            <!-- Aggiorna src quando hai l'immagine definitiva -->
             <img src="./mosto.png" alt="Progetto Mosto" width="320" height="240" loading="lazy">
           </div>
         </div>
@@ -297,7 +504,7 @@
     </section>
 
     <!-- NOW -->
-    <section id="now">
+    <section id="now" class="reveal-right">
       <div class="now-head">
         <div>
           <span class="section-number">05</span>
@@ -309,31 +516,63 @@
         </div>
       </div>
       <div class="now-grid">
-        <div class="now-card">
+        <div class="now-card"
+          data-modal-img="./Nuoto_.JPG"
+          data-modal-label="In piscina"
+          data-modal-title="Nuotatore agonista"
+          data-modal-desc="Mi alleno 6 volte a settimana, spesso prima dell'alba. La corsia è il posto dove la testa si svuota e il corpo fa tutto il lavoro. L'obiettivo non è finire — è farlo in meno del campione del mondo. Ogni centesimo di secondo conta."
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog">
           <span class="now-icon">🏊</span>
           <span class="now-t">In piscina</span>
           <p>Mi alleno 6 volte a settimana. Preparo le mie gare per farle durare un battito di ciglio — l'obiettivo è tuffarsi e toccare l'arrivo in meno del campione del mondo.</p>
+          <span class="now-card-hint">Scopri di più</span>
         </div>
-        <div class="now-card">
+        <div class="now-card"
+          data-modal-img="./Scuola.jpeg"
+          data-modal-label="A scuola"
+          data-modal-title="Operatore informatico"
+          data-modal-desc="Terzo anno di informatica all'Immaginazione e Lavoro di Milano. Tra hardware, reti, web design e programmazione Arduino — ho più ansia per una verifica di sistema operativo che per una gara di nuoto. Il che dice tutto."
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog">
           <span class="now-icon">💻</span>
           <span class="now-t">A scuola</span>
           <p>Terzo anno e ancora ne manca — ho più ansia per una verifica di hardware che per una gara di nuoto.</p>
+          <span class="now-card-hint">Scopri di più</span>
         </div>
-        <div class="now-card">
+        <div class="now-card"
+          data-modal-img="./teatro.png"
+          data-modal-label="In scena"
+          data-modal-title="Accademia teatrale"
+          data-modal-desc="Quattro anni di accademia teatrale, quattro spettacoli su palchi veri. Stare davanti a una platea non è poi così diverso da una gara di nuoto — in entrambi i casi non puoi tornare indietro. Ti abitui. Anzi, ci prendi gusto."
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog">
           <span class="now-icon">🎭</span>
           <span class="now-t">In scena</span>
           <p>Accademia teatrale attiva. Stare davanti a una platea non è poi così diverso da una gara — ti abitui.</p>
+          <span class="now-card-hint">Scopri di più</span>
         </div>
-        <div class="now-card">
+        <div class="now-card"
+          data-modal-img="./Aerei.png"
+          data-modal-label="In volo (con la testa)"
+          data-modal-title="Passione aviazione"
+          data-modal-desc="Non piloto — ancora. Ma studio aviazione per pura passione: motori, rotte, fisica del volo, meteorologia. C'è qualcosa nell'idea di capire come 300 tonnellate di metallo stiano in aria che non riesci a smettere di esplorare."
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog">
           <span class="now-icon">✈️</span>
           <span class="now-t">In volo (con la testa)</span>
           <p>Continuo a studiare aviazione per pura passione. Motori, rotte, fisica del volo — non si spiega, si ha.</p>
+          <span class="now-card-hint">Scopri di più</span>
         </div>
       </div>
     </section>
 
     <!-- CV -->
-    <section id="cv">
+    <section id="cv" class="reveal-left">
       <div class="cv-head">
         <div>
           <span class="section-number">06</span>
@@ -414,7 +653,7 @@
           <span class="cv-skill">WordPress</span>
           <span class="cv-skill">Figma</span>
           <span class="cv-skill">Photoshop</span>
-          <span class="cv-skill">Arduino (C++)</span>
+          
           <span class="cv-skill">Reti TCP/IP</span>
           <span class="cv-skill">Windows</span>
           <span class="cv-skill">Help Desk</span>
@@ -440,7 +679,7 @@
     </section>
 
     <!-- CONTATTI -->
-    <section id="contatti">
+    <section id="contatti" class="reveal-right">
       <div class="contatti-head">
         <div>
           <span class="section-number">07</span>
@@ -451,14 +690,12 @@
           <p style="margin-top:16px;font-size:15px;">Puoi contattarmi tramite email o trovarmi sui miei profili. Rispondo — promesso.</p>
         </div>
       </div>
-      <!-- FIX: aggiunti GitHub e LinkedIn -->
       <div class="contact-list">
         <a href="mailto:antonio.fonte@edu.immaginazioneelavoro.it" class="contact-row">
           <span class="contact-type">Email</span>
           <span>antonio.fonte@edu.immaginazioneelavoro.it</span>
         </a>
-       </div>
-     
+      </div>
     </section>
 
   </main>
@@ -605,7 +842,7 @@
 
 
     /* ═══════════════════════════════════════════════════
-       4. SCROLL ANIMATIONS
+       4. SCROLL ANIMATIONS (con stagger e reveal direzionale)
     ═══════════════════════════════════════════════════ */
     (function initScrollAnimations() {
       function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
@@ -633,10 +870,12 @@
           const section = entry.target;
           section.classList.add('vis');
 
+          /* barre competenze con stagger aumentato */
           section.querySelectorAll('.comp-bar[data-w]').forEach((bar, i) => {
-            setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 80 + i * 60);
+            setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 120 + i * 100);
           });
 
+          /* contatori */
           section.querySelectorAll('.num-n[data-target]').forEach(animateCounter);
 
           observer.unobserve(section);
@@ -753,6 +992,100 @@
         } else {
           if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
         }
+      });
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       7. NOW MODAL
+    ═══════════════════════════════════════════════════ */
+    (function initNowModal() {
+      const overlay   = document.getElementById('nowModalOverlay');
+      const img       = document.getElementById('nowModalImg');
+      const label     = document.getElementById('nowModalLabel');
+      const title     = document.getElementById('nowModalTitle');
+      const desc      = document.getElementById('nowModalDesc');
+      const closeBtn  = document.getElementById('nowModalClose');
+      let prevFocus   = null;
+
+      function openModal(card) {
+        prevFocus = document.activeElement;
+        img.src        = card.dataset.modalImg;
+        img.alt        = card.dataset.modalLabel;
+        label.textContent = card.dataset.modalLabel;
+        title.textContent = card.dataset.modalTitle;
+        desc.textContent  = card.dataset.modalDesc;
+
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => closeBtn.focus(), 50);
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (prevFocus) prevFocus.focus();
+      }
+
+      /* click sulle card */
+      document.querySelectorAll('.now-card[data-modal-img]').forEach(card => {
+        card.addEventListener('click', () => openModal(card));
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(card);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
+
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeModal();
+      });
+
+      /* focus trap */
+      overlay.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return;
+        const focusable = overlay.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      });
+    })();
+
+
+    /* ═══════════════════════════════════════════════════
+       8. PARALLAX IMMAGINI PROGETTI
+    ═══════════════════════════════════════════════════ */
+    (function initParallax() {
+      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (noMotion) return;
+
+      document.querySelectorAll('.proj-item').forEach(item => {
+        const imgEl = item.querySelector('.proj-img-wrap img');
+        if (!imgEl) return;
+
+        item.addEventListener('mousemove', e => {
+          const rect = item.getBoundingClientRect();
+          const relY = (e.clientY - rect.top) / rect.height; /* 0 → 1 */
+          const offset = (relY - 0.5) * 14; /* -7px … +7px */
+          imgEl.style.transform = `scale(1.04) translateY(${offset}px)`;
+        });
+
+        item.addEventListener('mouseleave', () => {
+          imgEl.style.transform = '';
+        });
       });
     })();
 
