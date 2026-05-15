@@ -185,11 +185,108 @@ p { color: var(--ink-3); }
   to   { opacity: 1; }
 }
 
+/* ── SCROLL REVEAL — lussuoso ─────────────────────── */
 section {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity  1.1s cubic-bezier(.16,1,.3,1),
+    transform 1.1s cubic-bezier(.16,1,.3,1);
 }
-section.vis { opacity: 1; transform: translateY(0); }
+section.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Figli diretti della sezione: stagger progressivo */
+section > * {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity  .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1);
+}
+section.vis > *:nth-child(1) { transition-delay: 0.08s; }
+section.vis > *:nth-child(2) { transition-delay: 0.18s; }
+section.vis > *:nth-child(3) { transition-delay: 0.28s; }
+section.vis > *:nth-child(4) { transition-delay: 0.38s; }
+section.vis > *:nth-child(5) { transition-delay: 0.46s; }
+section.vis > *:nth-child(6) { transition-delay: 0.54s; }
+section.vis > * { opacity: 1; transform: translateY(0); }
+
+/* Eccezione: hero è già .vis subito, niente delay */
+#hero > * {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity  .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1);
+}
+#hero.vis > *:nth-child(1) { transition-delay: 0.05s; }
+#hero.vis > *:nth-child(2) { transition-delay: 0.18s; }
+#hero.vis > * { opacity: 1; transform: translateY(0); }
+
+/* Reveal direzionale opzionale — mantenuto per compatibilità */
+section.reveal-left  { transform: translateX(-24px) translateY(24px); }
+section.reveal-right { transform: translateX(24px)  translateY(24px); }
+section.reveal-left.vis,
+section.reveal-right.vis { transform: translateX(0) translateY(0); }
+
+/* ── STAGGER FIGLI SPECIFICI — premium cascade ──────── */
+
+/* now-cards */
+#now.vis .now-card:nth-child(1) { transition-delay: 0.10s; }
+#now.vis .now-card:nth-child(2) { transition-delay: 0.22s; }
+#now.vis .now-card:nth-child(3) { transition-delay: 0.34s; }
+#now.vis .now-card:nth-child(4) { transition-delay: 0.46s; }
+.now-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), background .25s;
+}
+#now.vis .now-card { opacity: 1; transform: translateY(0); }
+
+/* num-cards */
+#numeri.vis .num-card:nth-child(1) { transition-delay: 0.08s; }
+#numeri.vis .num-card:nth-child(2) { transition-delay: 0.20s; }
+#numeri.vis .num-card:nth-child(3) { transition-delay: 0.32s; }
+#numeri.vis .num-card:nth-child(4) { transition-delay: 0.44s; }
+.num-card {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), background .25s;
+}
+#numeri.vis .num-card { opacity: 1; transform: translateY(0); }
+
+/* proj-items */
+#progetti.vis .proj-item:nth-child(1) { transition-delay: 0.08s; }
+#progetti.vis .proj-item:nth-child(2) { transition-delay: 0.22s; }
+#progetti.vis .proj-item:nth-child(3) { transition-delay: 0.36s; }
+.proj-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .95s cubic-bezier(.16,1,.3,1), transform .95s cubic-bezier(.16,1,.3,1);
+}
+#progetti.vis .proj-item { opacity: 1; transform: translateY(0); }
+
+/* cv-rows */
+#cv.vis .cv-row:nth-child(1) { transition-delay: 0.06s; }
+#cv.vis .cv-row:nth-child(2) { transition-delay: 0.14s; }
+#cv.vis .cv-row:nth-child(3) { transition-delay: 0.22s; }
+#cv.vis .cv-row:nth-child(4) { transition-delay: 0.30s; }
+.cv-row {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), background .2s, margin .2s, padding .2s;
+}
+#cv.vis .cv-row { opacity: 1; transform: translateY(0); }
+
+/* comp-items */
+#competenze.vis .comp-item:nth-child(1) { transition-delay: 0.06s; }
+#competenze.vis .comp-item:nth-child(2) { transition-delay: 0.14s; }
+#competenze.vis .comp-item:nth-child(3) { transition-delay: 0.22s; }
+#competenze.vis .comp-item:nth-child(4) { transition-delay: 0.30s; }
+#competenze.vis .comp-item:nth-child(5) { transition-delay: 0.38s; }
 
 /* ── TITOLI METALLICI ────────────────────────────── */
 /* h1 — prima riga .hl oro, seconda riga nero — come da foto */
@@ -197,11 +294,13 @@ h1 {
   font-family: var(--ff-display);
   font-size: clamp(56px, 9vw, 110px);
   font-weight: 700;
-  line-height: .95;
+  line-height: 1.05;
   letter-spacing: -.02em;
   margin-bottom: 40px;
+  padding-top: 4px;
   color: var(--ink);
   -webkit-text-fill-color: var(--ink);
+  overflow: visible;
 }
 /* .hl dentro h1 = oro pieno con sheen metallico sottile */
 h1 .hl {
@@ -209,6 +308,10 @@ h1 .hl {
   font-style: italic;
   color: var(--accent);
   -webkit-text-fill-color: transparent;
+  /* padding extra per dare spazio agli ascendenti del font corsivo */
+  padding-top: 0.12em;
+  padding-bottom: 0.08em;
+  margin-top: -0.12em;   /* compensa il padding senza spostare il layout */
   background: linear-gradient(
     105deg,
     #8a6a20 0%,
@@ -235,6 +338,8 @@ h2 {
   font-weight: 700;
   letter-spacing: -.01em;
   line-height: 1.15;
+  padding-top: 0.08em;
+  margin-top: -0.08em;
   background: linear-gradient(
     105deg,
     #111 0%,

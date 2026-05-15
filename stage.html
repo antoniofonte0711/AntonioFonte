@@ -359,35 +359,46 @@
       dot.style.left = ring.style.left = '0';
       dot.style.top  = ring.style.top  = '0';
 
-      const INTERACTIVE = 'a, button, .stage-section, .scheda-row, .rel-block';
+      const MAGNETIC  = 'a, button';
+      const HOVERABLE = '.stage-section, .scheda-row, .rel-block';
+      const MAX_MAGNET = 44;
 
-      function onEnter(e) {
+      function applyMagnet(e) {
         const rect = e.currentTarget.getBoundingClientRect();
-        magnetX = rect.left + rect.width  / 2;
-        magnetY = rect.top  + rect.height / 2;
-        dot.classList.add('hover');
-        ring.classList.add('hover');
-      }
-      function onMove(e) {
-        const rect = e.currentTarget.getBoundingClientRect();
-        magnetX = rect.left + rect.width  / 2;
-        magnetY = rect.top  + rect.height / 2;
-      }
-      function onLeave() {
-        magnetX = magnetY = null;
-        dot.classList.remove('hover');
-        ring.classList.remove('hover');
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = mx - cx;
+        const dy = my - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_MAGNET) {
+          const factor = 0.3 * (1 - dist / MAX_MAGNET);
+          magnetX = mx - dx * factor;
+          magnetY = my - dy * factor;
+        } else {
+          magnetX = null;
+          magnetY = null;
+        }
       }
 
-      document.querySelectorAll(INTERACTIVE).forEach(el => {
-        el.addEventListener('mouseenter', onEnter);
-        el.addEventListener('mousemove',  onMove);
-        el.addEventListener('mouseleave', onLeave);
+      function onMagnetEnter(e) { applyMagnet(e); dot.classList.add('hover'); ring.classList.add('hover'); }
+      function onMagnetMove(e)  { applyMagnet(e); }
+      function onMagnetLeave()  { magnetX = null; magnetY = null; dot.classList.remove('hover'); ring.classList.remove('hover'); }
+      function onHoverEnter()   { dot.classList.add('hover'); ring.classList.add('hover'); }
+      function onHoverLeave()   { magnetX = null; magnetY = null; dot.classList.remove('hover'); ring.classList.remove('hover'); }
+
+      document.querySelectorAll(MAGNETIC).forEach(el => {
+        el.addEventListener('mouseenter', onMagnetEnter);
+        el.addEventListener('mousemove',  onMagnetMove);
+        el.addEventListener('mouseleave', onMagnetLeave);
+      });
+      document.querySelectorAll(HOVERABLE).forEach(el => {
+        el.addEventListener('mouseenter', onHoverEnter);
+        el.addEventListener('mouseleave', onHoverLeave);
       });
     })();
 
 
-    /* ── SCROLL REVEAL con stagger elementi ──────────── */
+    /* ── SCROLL REVEAL — lussuoso ────────────────────── */
     (function initReveal() {
       const obs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -395,7 +406,7 @@
           e.target.classList.add('vis');
           obs.unobserve(e.target);
         });
-      }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.04, rootMargin: '0px 0px -60px 0px' });
 
       document.querySelectorAll('section').forEach(s => {
         if (!s.classList.contains('vis')) obs.observe(s);
