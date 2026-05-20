@@ -49,6 +49,15 @@ body {
 }
 body.page-out { opacity: 0; transition: opacity 0.4s; }
 
+/* Quando il loader esce, nav e main ricevono un fade-in coordinato */
+nav, main, footer {
+  animation: pageFadeIn .5s cubic-bezier(.16,1,.3,1) .45s both;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 a { color: inherit; text-decoration: none; }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 p { color: var(--ink-3); }
@@ -180,10 +189,6 @@ p { color: var(--ink-3); }
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
 
 /* ── SCROLL REVEAL — lussuoso ─────────────────────── */
 section {
@@ -234,54 +239,57 @@ section.reveal-right.vis { transform: translateX(0) translateY(0); }
 
 /* ── STAGGER FIGLI SPECIFICI — premium cascade ──────── */
 
-/* now-cards */
+/*
+ * Classe utility condivisa per tutti gli elementi staggered.
+ * Lo stato "visibile" è applicato quando la sezione padre ottiene .vis.
+ * I transition-delay specifici per componente sono sotto.
+ */
+.now-card,
+.num-card,
+.proj-item,
+.cv-row,
+.comp-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity   .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1),
+    background .25s,
+    margin .2s,
+    padding .2s;
+}
+
+/* Stato visibile — attivato dal genitore .vis */
+#now.vis      .now-card,
+#numeri.vis   .num-card,
+#progetti.vis .proj-item,
+#cv.vis       .cv-row,
+#competenze.vis .comp-item { opacity: 1; transform: translateY(0); }
+
+/* Delay now-cards */
 #now.vis .now-card:nth-child(1) { transition-delay: 0.10s; }
 #now.vis .now-card:nth-child(2) { transition-delay: 0.22s; }
 #now.vis .now-card:nth-child(3) { transition-delay: 0.34s; }
 #now.vis .now-card:nth-child(4) { transition-delay: 0.46s; }
-.now-card {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), background .25s;
-}
-#now.vis .now-card { opacity: 1; transform: translateY(0); }
 
-/* num-cards */
+/* Delay num-cards */
 #numeri.vis .num-card:nth-child(1) { transition-delay: 0.08s; }
 #numeri.vis .num-card:nth-child(2) { transition-delay: 0.20s; }
 #numeri.vis .num-card:nth-child(3) { transition-delay: 0.32s; }
 #numeri.vis .num-card:nth-child(4) { transition-delay: 0.44s; }
-.num-card {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1), background .25s;
-}
-#numeri.vis .num-card { opacity: 1; transform: translateY(0); }
 
-/* proj-items */
+/* Delay proj-items */
 #progetti.vis .proj-item:nth-child(1) { transition-delay: 0.08s; }
 #progetti.vis .proj-item:nth-child(2) { transition-delay: 0.22s; }
 #progetti.vis .proj-item:nth-child(3) { transition-delay: 0.36s; }
-.proj-item {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .95s cubic-bezier(.16,1,.3,1), transform .95s cubic-bezier(.16,1,.3,1);
-}
-#progetti.vis .proj-item { opacity: 1; transform: translateY(0); }
 
-/* cv-rows */
+/* Delay cv-rows */
 #cv.vis .cv-row:nth-child(1) { transition-delay: 0.06s; }
 #cv.vis .cv-row:nth-child(2) { transition-delay: 0.14s; }
 #cv.vis .cv-row:nth-child(3) { transition-delay: 0.22s; }
 #cv.vis .cv-row:nth-child(4) { transition-delay: 0.30s; }
-.cv-row {
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1), background .2s, margin .2s, padding .2s;
-}
-#cv.vis .cv-row { opacity: 1; transform: translateY(0); }
 
-/* comp-items */
+/* Delay comp-items */
 #competenze.vis .comp-item:nth-child(1) { transition-delay: 0.06s; }
 #competenze.vis .comp-item:nth-child(2) { transition-delay: 0.14s; }
 #competenze.vis .comp-item:nth-child(3) { transition-delay: 0.22s; }
@@ -596,11 +604,14 @@ h2 .hl {
   background: var(--cream-3); position: relative;
 }
 .comp-bar {
-  position: absolute; top: 0; left: 0; height: 1px; width: 0;
+  position: absolute; top: 0; left: 0; height: 1px;
+  width: 100%; /* occupa tutto il wrapper — scaleX lo riduce a 0 di partenza */
+  transform: scaleX(0);
+  transform-origin: left;
   background: linear-gradient(90deg, rgba(201,168,76,0.4), #C9A84C, #f0d980, #C9A84C);
   background-size: 200% auto;
   animation: sheenSlow 3s linear infinite;
-  transition: width 1.6s cubic-bezier(.16,1,.3,1);
+  transition: transform 1.6s cubic-bezier(.16,1,.3,1);
 }
 .comp-badge { font-size: 13px; color: var(--accent); min-width: 80px; text-align: right; letter-spacing: 2px; }
 .comp-lvl {

@@ -13,16 +13,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Besley:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* ── PAGE FADE-IN (simmetrico al fade-out) ── */
-    @keyframes pageFadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    body {
-      animation: pageFadeIn 0.4s ease forwards;
-    }
-
-
     /* ── NOW-CARD clickabile ── */
     .now-card {
       cursor: none;
@@ -849,9 +839,11 @@
           const section = entry.target;
           section.classList.add('vis');
 
-          /* barre competenze — stagger più lungo per effetto lussuoso */
+          /* barre competenze — scaleX per performance (no layout recalc) */
           section.querySelectorAll('.comp-bar[data-w]').forEach((bar, i) => {
-            setTimeout(() => { bar.style.width = bar.dataset.w + '%'; }, 280 + i * 120);
+            setTimeout(() => {
+              bar.style.transform = `scaleX(${parseInt(bar.dataset.w, 10) / 100})`;
+            }, 280 + i * 120);
           });
 
           /* contatori numerici */
